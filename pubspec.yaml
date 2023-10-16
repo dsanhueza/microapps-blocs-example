@@ -44,6 +44,9 @@ dependencies:
   micro_app_one:
     path: ./micro_apps/micro_app_one
 
+  micro_app_two:
+    path: ./micro_apps/micro_app_two
+
 
 dev_dependencies:
   build_runner: ^2.3.3

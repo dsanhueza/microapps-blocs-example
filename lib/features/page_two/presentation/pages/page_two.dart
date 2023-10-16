@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:micro_app_two/main.dart';
 
 class PageTwo extends StatelessWidget {
   const PageTwo({super.key});
@@ -9,7 +10,7 @@ class PageTwo extends StatelessWidget {
       appBar: AppBar(
         title: Text('PageTwo'),
       ),
-      body: Center(child: Text('Page Two')),
+      body: MicroAppTwo(),
     );
   }
 }

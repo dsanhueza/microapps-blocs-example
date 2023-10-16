@@ -7,7 +7,7 @@ class MicroAppOnePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return context.read<ItemSelectionBloc>().state.when(
+    return context.watch<ItemSelectionBloc>().state.when(
           initial: () => Center(
             child: Text('Initial'),
           ),

@@ -423,6 +423,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  micro_app_two:
+    dependency: "direct main"
+    description:
+      path: "micro_apps/micro_app_two"
+      relative: true
+    source: path
+    version: "0.0.1"
   mime:
     dependency: transitive
     description:

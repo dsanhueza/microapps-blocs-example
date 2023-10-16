@@ -12,8 +12,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     selectItem(Item _item) {
-      BlocProvider.of<ItemSelectionBloc>(context)
-          .add(ItemSelectionEvent.selectItem(item: _item));
+      BlocProvider.of<ItemSelectionBloc>(context).add(
+        ItemSelectionEvent.selectItem(item: _item),
+      );
+      context.go('/page_one');
     }
 
     return Scaffold(
@@ -27,22 +29,40 @@ class HomePage extends StatelessWidget {
               return Container(
                 width: double.infinity,
                 height: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    return BlocListener<ItemSelectionBloc, ItemSelectionState>(
-                      listener: (context, state) {
-                        state.whenOrNull(
-                          onSelectItem: (item) {
-                            context.go('/page_one');
-                          },
-                        );
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<ItemSelectionBloc>().add(
+                              ItemSelectionEvent.selectItem(
+                                item: Item(id: 3, name: 'Item_3'),
+                              ),
+                            );
                       },
-                      child: ElevatedButton(
-                          onPressed: () => selectItem(items[index]),
-                          child: Text(items[index].name)),
-                    );
-                  },
+                      child: Text('Select Item 3'),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: items.length,
+                        itemBuilder: (context, index) {
+                          return BlocListener<ItemSelectionBloc,
+                              ItemSelectionState>(
+                            listener: (context, state) {
+                              state.whenOrNull(
+                                onSelectItem: (item) {
+                                  context.go('/page_one');
+                                },
+                              );
+                            },
+                            child: ElevatedButton(
+                              onPressed: () => selectItem(items[index]),
+                              child: Text(items[index].name),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               );
             },
